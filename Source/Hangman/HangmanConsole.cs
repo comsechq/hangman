@@ -29,6 +29,7 @@ namespace Hangman
         public override int Default()
         {
             Console.WriteLine("Hangman - Monitor for Hung Command Line Processes");
+            Console.WriteLine("Version: 1.0.1");
             Console.WriteLine("https://github.com/comsechq/hangman");
             Console.WriteLine();
             Console.WriteLine("Hangman monitors a command line process and kills it if no data is witten");

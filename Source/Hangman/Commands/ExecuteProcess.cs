@@ -162,7 +162,7 @@ namespace Hangman.Commands
         {
             try
             {
-                var content = string.Format("{0:yyyy-MM-dd HH:mm:ss} : Killed Process '{1}' (PID: {2})", DateTime.Now, killedProcess.ProcessName, killedProcess.Id);
+                var content = string.Format("{0:yyyy-MM-dd HH:mm:ss} : Killed Process '{1}' (PID: {2}){3}", DateTime.Now, killedProcess.ProcessName, killedProcess.Id, Environment.NewLine);
 
                 File.AppendAllText(fileName, content);
             }
