@@ -27,4 +27,4 @@ Windows console application to detect and restart hung console processes.  Usage
 You can download the [current version here][1].
 
 
-[1]: https://github.com/comsechq/hangman/releases/download/v1.0.0/Hangman-v1.0.0.zip "Version 1.0.0"
+[1]: https://github.com/comsechq/hangman/releases/download/v1.0.1/Hangman-v1.0.1.zip "Version 1.0.1"
