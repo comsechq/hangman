@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using Hangman.Commands;
 using Sugar.Command;
 
@@ -29,7 +30,7 @@ namespace Hangman
         public override int Default()
         {
             Console.WriteLine("Hangman - Monitor for Hung Command Line Processes");
-            Console.WriteLine("Version: 1.0.1");
+            Console.WriteLine("Version: 1.0.2");
             Console.WriteLine("https://github.com/comsechq/hangman");
             Console.WriteLine();
             Console.WriteLine("Hangman monitors a command line process and kills it if no data is witten");
@@ -44,13 +45,13 @@ namespace Hangman
             Console.WriteLine("  --file      Executeable process to run");
             Console.WriteLine("  --timeout   Timeout in seconds.  If no data is recieved on either the");
             Console.WriteLine("              standard output or standard error within this period, then ");
-            Console.WriteLine("              the process is forcably terminated");
+            Console.WriteLine("              the process is sent a CTRL-C input then forcably terminated");
             Console.WriteLine("  --log       Log process terminations to given file");
             Console.WriteLine();
             Console.WriteLine("Any additional command line parameters are passed through to the executable");
             Console.WriteLine("process.");
 
-            return 0;
+            return (int) ExitCode.Success;
         }
     }
 }
