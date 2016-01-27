@@ -60,9 +60,16 @@ namespace Hangman.Commands
         /// </summary>
         /// <param name="options">The options.</param>
         /// <returns></returns>
-        /// <exception cref="System.NotImplementedException"></exception>
         public override int Execute(Options options)
         {
+            // Options will be null when not a single command parameter matches the command options.
+            if (string.IsNullOrEmpty(options?.FileName))
+            {
+                Console.WriteLine("Missing or empty --filename parameter");
+
+                return (int) ExitCode.GeneralError;
+            }
+            
             logFileName = options.LogFileName;
 
             InitializeTimer(options);
@@ -218,9 +225,8 @@ namespace Hangman.Commands
         {
             try
             {
-                var content = string.Format("{0:yyyy-MM-dd HH:mm:ss} : Sent {1} signal to process '{2}' (PID: {3}){4}",
-                                            DateTime.Now, sentSignal, process.ProcessName, process.Id,
-                                            Environment.NewLine);
+                var content =
+                    $"{DateTime.Now:yyyy-MM-dd HH:mm:ss} : Sent {sentSignal} signal to process '{process.ProcessName}' (PID: {process.Id}){Environment.NewLine}";
 
                 File.AppendAllText(fileName, content);
             }

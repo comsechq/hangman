@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Hangman.Commands;
 using Sugar.Command;
 
@@ -8,26 +7,51 @@ namespace Hangman
     /// <summary>
     /// Hangman console application
     /// </summary>
-    public class HangmanConsole : BaseCommandConsole
+    public class HangmanConsole : BaseConsole
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="HangmanConsole"/> class.
         /// </summary>
         public HangmanConsole()
         {
-            // Add commands
-            Commands.Add(new ExecuteProcess());
-
             // Only process command line switches start with "--"
             Switches.Clear();
             Switches.Add("--");
         }
 
         /// <summary>
+        /// Entry point for the program logic
+        /// </summary>
+        protected override int Main()
+        {
+            var exitCode = Arguments.Count > 0 ? Run(typeof(ExecuteProcess), Arguments) : Default();
+
+            return exitCode;
+        }
+
+        /// <summary>
+        /// Runs the specified parameters.
+        /// </summary>
+        /// <param name="commandType">Type of the command.</param>
+        /// <param name="parameters">The parameters.</param>
+        /// <returns></returns>
+        public int Run(Type commandType, Parameters parameters)
+        {
+            // Assign current parameters
+            Parameters.SetCurrent(parameters.ToString());
+
+            var command = (ICommand) Activator.CreateInstance(commandType);
+            
+            command.BindParameters(parameters);
+            
+            return command.Execute();
+        }
+        
+        /// <summary>
         /// Displays usage information
         /// </summary>
         /// <returns></returns>
-        public override int Default()
+        public int Default()
         {
             Console.WriteLine("Hangman - Monitor for Hung Command Line Processes");
             Console.WriteLine("Version: 1.0.2");
