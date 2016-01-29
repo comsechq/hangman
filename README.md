@@ -1,9 +1,9 @@
 Hangman - Hung Process Monitor
 ---
 
-Windows console application to detect and restart hung console processes. 
+Windows console application to detect and restart hung console processes. You can download the [latest version here][1].
 
-Usage:
+##Usage
 
 ```
 Hangman - Monitor for Hung Command Line Processes
@@ -28,7 +28,15 @@ Any additional command line parameters are passed through to the executable
 process.
 ```
 
-You can download the [latest version here][1].
+##Example
+
+```
+hanman.exe --file c:\path\to\myconsoleapp.exe --timeout 90 -param1 value1 -param2 value2
+```
+
+The command above will start `hangman.exe`. This hangman will in turn spawn `myconsoleapp.exe` as a new process and redirects its output as well its input.
+If the `myconsoleapp.exe` does not output anything for 90 second or more a `CTRL+C` will be sent to the input of `myconsoleapp.exe`.
+If `myconsoleapp.exe` listens for `CTRL+C` it can then execute some code to end whatever it's doing gracefully.
 
 ##License
 
