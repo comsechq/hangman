@@ -31,7 +31,7 @@ process.
 ##Example
 
 ```
-hanman.exe --file c:\path\to\myconsoleapp.exe --timeout 90 -param1 value1 -param2 value2
+hangman.exe --file c:\path\to\myconsoleapp.exe --timeout 90 -param1 value1 -param2 value2
 ```
 
 The command above will start `hangman.exe`. This hangman will in turn spawn `myconsoleapp.exe` as a new process and redirects its output as well its input.
